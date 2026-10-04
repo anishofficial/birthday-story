@@ -30,10 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Section Navigation Buttons
   const navButtons = document.querySelectorAll('[data-next]');
   navButtons.forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
       const targetId = button.getAttribute('data-next');
       const targetSection = document.getElementById(targetId);
       if (targetSection) {
+        targetSection.classList.add('visible');
+        targetSection.classList.remove('hidden-start');
         targetSection.scrollIntoView({ behavior: 'smooth' });
       }
     });
@@ -109,6 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         const heroSection = document.getElementById('hero');
         if (heroSection) {
+          heroSection.classList.add('visible');
+          heroSection.classList.remove('hidden-start');
           heroSection.scrollIntoView({ behavior: 'smooth' });
         }
       }, 2200);
@@ -132,12 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (id === 'why-i-love-you') {
           animateLoveList(entry.target);
         }
-        
-        // Optional: stop observing once revealed
-        // observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.15 });
 
   revealSections.forEach(section => {
     // Keep cake-screen visible from start, observe others
@@ -155,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     messages.forEach((msg, index) => {
       setTimeout(() => {
         msg.classList.add('show');
-      }, index * 800); // 800ms delay between messages
+      }, index * 800);
     });
   }
 
@@ -177,9 +179,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const proposalSuccess = document.getElementById('proposal-success');
   const proposalMessage = "Will you be mine forever? 💍❤️";
   
-  if (revealProposalBtn) {
-    revealProposalBtn.addEventListener('click', () => {
+  if (revealProposalBtn && proposalText) {
+    let hasRevealed = false;
+
+    const startProposalReveal = (e) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      if (hasRevealed) return;
+      hasRevealed = true;
+
       revealProposalBtn.style.display = 'none';
+      proposalText.style.display = 'block';
       proposalText.classList.remove('hidden-start');
       
       let i = 0;
@@ -189,10 +201,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (i < proposalMessage.length) {
           proposalText.innerHTML += proposalMessage.charAt(i);
           i++;
-          setTimeout(typeWriter, 80);
+          setTimeout(typeWriter, 70);
         } else {
           // Show Yes and No buttons smoothly after typing finishes
           if (proposalChoiceContainer) {
+            proposalChoiceContainer.style.display = 'flex';
             proposalChoiceContainer.classList.remove('hidden-start');
           }
           // Ambient heart burst
@@ -201,7 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       typeWriter();
-    });
+    };
+
+    revealProposalBtn.addEventListener('click', startProposalReveal);
+    revealProposalBtn.addEventListener('touchend', startProposalReveal);
   }
 
   // Playful dodging "No" button
@@ -217,7 +233,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let noClickCount = 0;
   let yesScale = 1;
 
-  function dodgeNoButton() {
+  function dodgeNoButton(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     if (!proposalNoBtn) return;
     
     // Change phrase
@@ -226,39 +246,45 @@ document.addEventListener('DOMContentLoaded', () => {
     noClickCount++;
 
     // Random safe offset translation inside card
-    const randomX = (Math.random() - 0.5) * 120;
-    const randomY = (Math.random() - 0.5) * 50;
+    const randomX = (Math.random() - 0.5) * 110;
+    const randomY = (Math.random() - 0.5) * 45;
     proposalNoBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 
     // Make YES button grow bigger and more irresistible
     if (proposalYesBtn) {
       yesScale += 0.08;
-      proposalYesBtn.style.transform = `scale(${Math.min(yesScale, 1.4)})`;
+      proposalYesBtn.style.transform = `scale(${Math.min(yesScale, 1.35)})`;
     }
   }
 
   if (proposalNoBtn) {
     proposalNoBtn.addEventListener('mouseenter', dodgeNoButton);
-    proposalNoBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      dodgeNoButton();
-    });
+    proposalNoBtn.addEventListener('touchstart', dodgeNoButton, { passive: false });
+    proposalNoBtn.addEventListener('click', dodgeNoButton);
   }
 
   // Celebratory "YES" button click
   if (proposalYesBtn) {
-    proposalYesBtn.addEventListener('click', () => {
+    const handleYesClick = (e) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       // Hide choices
       if (proposalChoiceContainer) {
         proposalChoiceContainer.style.display = 'none';
       }
       // Show success message and next step button
       if (proposalSuccess) {
+        proposalSuccess.style.display = 'block';
         proposalSuccess.classList.remove('hidden-start');
       }
       // Trigger romantic heart shower
       startHeartShower();
-    });
+    };
+
+    proposalYesBtn.addEventListener('click', handleYesClick);
+    proposalYesBtn.addEventListener('touchend', handleYesClick);
   }
 
   // 7. Full-Screen GPU-Accelerated Smooth Heart Shower
