@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Little Story ❤️</title>
+  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Quicksand:wght@300;400;600&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- Background floating hearts & shower container -->
+  <div id="hearts-container"></div>
+  <div id="shower-container"></div>
+  <div id="celebration-flash" class="celebration-flash"></div>
+  <div id="celebration-toast" class="celebration-toast">Forever & Always, My Love! 💖✨</div>
+
+  <!-- Floating Spotify Music Player -->
+  <div class="spotify-floating-widget">
+    <button id="music-toggle-btn" class="music-btn" title="Toggle Spotify Music">
+      <span class="music-icon">🎵</span>
+      <span>Our Romantic Song</span>
+      <span class="spotify-pill">Spotify</span>
+    </button>
+    <div id="spotify-player-wrapper" class="spotify-player-wrapper">
+      <iframe 
+        style="border-radius:12px; display:block;" 
+        src="https://open.spotify.com/embed/track/0rFdbImiFCvAY8jD2aE391?utm_source=generator&theme=0" 
+        width="280" 
+        height="152" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- 0. Interactive Cake & 3 Candles Screen -->
+  <section id="cake-screen" class="reveal-section visible">
+    <div class="glass-card text-center cake-card">
+      <h1 class="handwritten">Light The Candles & Cut The Cake! 🎂✨</h1>
+      <p id="cake-instruction" class="subtitle mt-2">Light up all 3 candles to make your birthday wish…</p>
+
+      <!-- Cake Stage -->
+      <div class="cake-stage mt-4">
+        <!-- Knife animation overlay -->
+        <div id="cake-knife" class="cake-knife">🔪</div>
+
+        <!-- 3 Candles Container -->
+        <div class="candles-row">
+          <!-- Candle 1 -->
+          <div id="candle-1" class="candle-wrapper">
+            <div class="candle-flame"></div>
+            <div class="candle-wick"></div>
+            <div class="candle-body"></div>
+          </div>
+          <!-- Candle 2 -->
+          <div id="candle-2" class="candle-wrapper">
+            <div class="candle-flame"></div>
+            <div class="candle-wick"></div>
+            <div class="candle-body"></div>
+          </div>
+          <!-- Candle 3 -->
+          <div id="candle-3" class="candle-wrapper">
+            <div class="candle-flame"></div>
+            <div class="candle-wick"></div>
+            <div class="candle-body"></div>
+          </div>
+        </div>
+
+        <!-- Birthday Cake Graphic -->
+        <div id="birthday-cake" class="birthday-cake-box">
+          <div class="cake-berries">
+            <span class="berry">🍓</span>
+            <span class="berry">🍒</span>
+            <span class="berry">🍓</span>
+          </div>
+          <div class="cake-frosting-top">
+            <span class="frosting-drop"></span>
+            <span class="frosting-drop"></span>
+            <span class="frosting-drop"></span>
+            <span class="frosting-drop"></span>
+            <span class="frosting-drop"></span>
+          </div>
+          <div class="cake-layer-top"></div>
+          <div class="cake-cream-middle"></div>
+          <div class="cake-layer-bottom"></div>
+          <div class="cake-plate"></div>
+        </div>
+      </div>
+
+      <!-- 3 Buttons for lighting candles -->
+      <div id="candle-buttons-container" class="candle-buttons-grid mt-4">
+        <button id="btn-candle-1" class="btn btn-candle">Light Candle 1 🕯️</button>
+        <button id="btn-candle-2" class="btn btn-candle">Light Candle 2 🕯️</button>
+        <button id="btn-candle-3" class="btn btn-candle">Light Candle 3 🕯️</button>
+      </div>
+
+      <!-- Cut Cake Status / Completion Button -->
+      <div id="cake-cut-status" class="cake-status mt-4 hidden-start">
+        <p class="handwritten cake-cut-text">🎉 Cake is cut! Happy Birthday, My Love! ❤️</p>
+        <div class="section-actions mt-3">
+          <button id="proceed-to-story-btn" class="btn next-btn pulse" data-next="hero">See Your Birthday Story 💌 ➔</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. Opening Screen -->
+  <section id="hero" class="reveal-section hidden-start">
+    <div class="glass-card text-center">
+      <div class="bear-illustration">
+        <img src="bubu.jpg" alt="My Love" class="rounded-img">
+      </div>
+      <h1 class="handwritten mt-4">Happy Birthday, My Love ❤️</h1>
+      <p class="subtitle mt-2">A little thing made for you my chlo</p>
+      <div class="section-actions">
+        <button id="start-btn" class="btn next-btn" data-next="first-chat">Start Our Story 💌 ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. The First Chat -->
+  <section id="first-chat" class="reveal-section hidden-start">
+    <div class="glass-card">
+      <h2 class="handwritten text-center">The First Chat 💬</h2>
+      <p class="caption text-center">"I didn't know this conversation would become the beginning of us…"</p>
+
+      <div class="chat-container mt-4">
+        <div class="chat-message received">
+          <p>Hey Hi, May i know who is this ? </p>
+          <span class="time">7:28 PM</span>
+        </div>
+        <div class="chat-message sent">
+          <p>Myself Harini sri </p>
+          <span class="time">7:47 PM</span>
+        </div>
+        <div class="chat-message received">
+          <p>Ohh namba class ahh ?</p>
+          <span class="time">7:52 PM</span>
+        </div>
+        <!-- Add more chat messages here -->
+      </div>
+
+      <div class="section-actions">
+        <button class="btn next-btn" data-next="first-picture">Our First Picture 📸 ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Our First Picture -->
+  <section id="first-picture" class="reveal-section hidden-start">
+    <div class="glass-card text-center relative">
+      <h2 class="handwritten">The First Picture You have sended 📸</h2>
+      <div class="polaroid mt-4">
+        <img src="first-picture.jpg" alt="Our First Picture">
+        <p class="handwritten mt-2">You are so cute at this ... ❤️</p>
+        <span class="date">September 25, 2026</span>
+      </div>
+      <div class="bear-decor bear-bottom-right">
+        <img src="https://dummyimage.com/80x80/ffb6c1/ffffff&text=Bears" alt="Bears" class="rounded-img">
+      </div>
+      <div class="section-actions">
+        <button class="btn next-btn" data-next="proposal">A Special Moment 💍 ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. The First Proposal -->
+  <section id="proposal" class="reveal-section hidden-start">
+    <div class="glass-card text-center proposal-card relative">
+      <h2 class="handwritten">The First Proposal 💍</h2>
+      <p class="caption mt-2">"And then came the moment that changed everything…"</p>
+
+      <div class="proposal-container mt-4">
+        <p id="proposal-text" class="typing-text hidden-start"></p>
+        <button id="reveal-proposal-btn" class="btn mt-4">Reveal the Moment ✨</button>
+      </div>
+
+      <!-- Yes / No Proposal Buttons -->
+      <div id="proposal-choice-container" class="proposal-actions mt-4 hidden-start">
+        <button id="proposal-yes-btn" class="btn btn-yes pulse">YES! 🥰💍</button>
+        <button id="proposal-no-btn" class="btn btn-no">No 🙈</button>
+      </div>
+
+      <!-- Acceptance Response -->
+      <div id="proposal-success" class="proposal-success mt-4 hidden-start">
+        <p class="handwritten proposal-response-text">Yay! Best decision ever! ❤️✨</p>
+        <div class="section-actions mt-3">
+          <button class="btn next-btn" data-next="memories">Our Favorite Memories 🧸 ➔</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Our Little Moments -->
+  <section id="memories" class="reveal-section hidden-start">
+    <div class="glass-card text-center">
+      <h2 class="handwritten">Our Little Moments 🧸</h2>
+      <p class="caption mt-2">Just a few of my favorite memories with you.</p>
+
+      <div class="gallery mt-4">
+        <div class="gallery-item">
+          <img src="memory-1.jpg" alt="Memory 1 - You are my gift">
+          <p class="handwritten">"Nee yenaku oru gift..." ❤️</p>
+        </div>
+        <div class="gallery-item">
+          <img src="memory-2.jpg" alt="Memory 2 - Missing you badly">
+          <p class="handwritten">"Missing you badly..." 💕</p>
+        </div>
+        <div class="gallery-item">
+          <img src="memory-3.jpg" alt="Memory 3 - En wife kaga">
+          <p class="handwritten">"En wife kaga..." 🙈❤️</p>
+        </div>
+      </div>
+
+      <div class="section-actions">
+        <button class="btn next-btn" data-next="why-i-love-you">Why I Love You ❤️ ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Why I Love You -->
+  <section id="why-i-love-you" class="reveal-section hidden-start">
+    <div class="glass-card">
+      <h2 class="handwritten text-center">Why I Love You ❤️</h2>
+      <ul class="love-list mt-4">
+        <li>Your beautiful smile that lights up my day</li>
+        <li>Your adorable craziness</li>
+        <li>The way you care for me</li>
+        <li>Our silly late-night conversations</li>
+
+      </ul>
+
+      <div class="section-actions">
+        <button class="btn next-btn" data-next="finale">The Birthday Celebration 🎂 ➔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Birthday Finale -->
+  <section id="finale" class="reveal-section hidden-start">
+    <div class="glass-card text-center finale-card">
+      <div class="cake-container">
+        <div class="cake">🎂</div>
+      </div>
+      <h1 class="handwritten mt-4 gradient-text">Happy Birthday, My Love ❤️</h1>
+      <p class="finale-text mt-4">
+        "Here's to our first love moment ,our first journy ,our first proposal… <br>
+        and all the memories we're still going to make."
+      </p>
+      <div class="section-actions">
+        <button id="finale-celebrate-btn" class="btn pulse">Forever & Always ❤️</button>
+        <button class="btn btn-secondary next-btn" data-next="hero">Back to Start 💌 ↺</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
